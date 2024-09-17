@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35303.130
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{13B669BE-BB05-4DDF-9536-439F39A36129}") = "SB-Live", "SB-Live.phpproj", "{F3FF0294-E1C0-4C15-98D1-965048FA6EA6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F3FF0294-E1C0-4C15-98D1-965048FA6EA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3FF0294-E1C0-4C15-98D1-965048FA6EA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3FF0294-E1C0-4C15-98D1-965048FA6EA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3FF0294-E1C0-4C15-98D1-965048FA6EA6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A284834F-97D6-44B4-9311-695054CE6549}
+	EndGlobalSection
+EndGlobal

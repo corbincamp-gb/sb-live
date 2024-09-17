@@ -1,0 +1,16 @@
+<Project Sdk="Devsense.Php.Sdk">
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>f3ff0294-e1c0-4c15-98d1-965048fa6ea6</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup>
+    <EnvName>PHPDev</EnvName>
+    <RootNamespace>SB\Live</RootNamespace>
+    <WebRoot />
+    <RuntimeVersion>8.0</RuntimeVersion>
+    <SaveServerSettingsInUserFile>false</SaveServerSettingsInUserFile>
+    <PHPDevHostName>skillbridge.osd.mil</PHPDevHostName>
+    <PHPDevAutoPort>true</PHPDevAutoPort>
+    <PHPDevRouting />
+    <PHPDevPort>8080</PHPDevPort>
+  </PropertyGroup>
+</Project>
