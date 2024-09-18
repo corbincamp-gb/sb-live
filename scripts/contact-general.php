@@ -78,15 +78,17 @@ $update_alt .= "Thank you for your continued support of our Service Members,";
 $update_alt .= "- The SkillBridge Team";
 $update_alt .= "DO NOT REPLY TO THIS EMAIL<br/>This email was sent from an account that we use for sending email messages only, please don't reply to this email.";
 
+require("validate-recaptcha.php");
+
 $force = false;
 $result = validate_recaptcha($recaptcha_response) == true || $force == true;
 // Validate recaptcha and then create a submission email/ticket
 if ($result == true) {
-    header("HTTP/1.1 200 OK");
+    
     // Create the email
     try {
-       
-        include('smtp-creds.php')
+
+        include('smtp-creds.php');
 
         $new_ticket_email = $ticket_email;
 
@@ -136,16 +138,17 @@ if ($result == true) {
         $mail->setFrom('support@skillbridge.org', $first_name . " " . $last_name);  //Recipients
 
         $mail->send();
-        echo 'Message has been sent';
+        header("HTTP/1.1 200 OK");
+        $mail->smtpClose();
+        return true;
     } catch (Exception $e) {
-        echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+        header("HTTP/1.1 500 Server Error");
     }
-    return true;
+
 } else {
     header("HTTP/1.1 400 Bad Request");
 }
 
-require("validate-recaptcha.php");
 
 
 ?>

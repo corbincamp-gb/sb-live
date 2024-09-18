@@ -6,7 +6,7 @@ use PHPMailer\PHPMailer\Exception;
 require_once('Exception.php');
 require_once('PHPMailer.php');
 require_once('SMTP.php');
-require_once('clean-string.php')
+require_once('clean-string.php');
 
 // Define Mail Object
 $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
@@ -59,15 +59,16 @@ $email_message .= "<p><span style='font-weight:bold;'>Comments:</span> ".clean_s
 
 $send_additional_army_email = false;
 
+require("validate-recaptcha.php");
+
 // Validate recaptcha and then create a submission email/ticket
 if (validate_recaptcha($recaptcha_response) == true) 
 {
-    header("HTTP/1.1 200 OK");
     // Create the email
     try 
     {
 
-       include('smtp-creds.php')
+        include('smtp-creds.php');
 
         //Recipients
 		
@@ -127,18 +128,25 @@ if (validate_recaptcha($recaptcha_response) == true)
         // If sending this mail to army, send additional email directly to user submitting form with Army message
         if($send_additional_army_email == true)
         {
-                //Server settings
-        $mail->SMTPDebug = 2;                                				// Enable verbose debug output
-        $mail->isSMTP();                                      				// Set mailer to use SMTP
-        $mail->Host = 'smtppro.zoho.com';                                      // Specify main and backup SMTP servers
-        $mail->SMTPAuth = true;                               				// Enable SMTP authentication
-        $mail->Username = 'support@skillbridge.org'; 						// SMTP username
-        $mail->Password = '!!SkillBridge2024';										//'Vm6z$tAMu5ca>/';                                 // SMTP password
-        $mail->Port = 587;                                     				// TCP port to connect to
-        $mail->SMTPKeepAlive = true;
+            //Server settings
+            $mail2->SMTPDebug = $mail->SMTPDebug;                                				// Enable verbose debug output
+            $mail2->isSMTP();                                      				// Set mailer to use SMTP
+            $mail2->Host = $mail->Host;                                      // Specify main and backup SMTP servers
+            $mail2->SMTPAuth = $mail->SMTPAuth;                               				// Enable SMTP authentication
+            $mail2->Username = $mail->Username; 						// SMTP username
+            $mail2->Password = $mail->Password; 									  // SMTP password
+            $mail2->Port = $mail->Port;                                     				// TCP port to connect to
+            $mail2->SMTPKeepAlive = $mail->SMTPKeepAlive;
 
             // Recipients (Email From is used by LHN to notify the sender of ticket updates)
-            $mail2->setFrom('noreply@skillbridge.osd.mil', 'SkillBridge Contact Form');
+            $mail2->setFrom('support@skillbridge.org', 'SkillBridge Contact Form');
+            $mail2->addAddress($email_from);     // LiveHelpNow Email-to-Ticket email address
+
+            // Content
+            $mail2->isHTML(true);   // Set email format to HTML
+
+            // Recipients (Email From is used by LHN to notify the sender of ticket updates)
+            $mail2->setFrom('support@skillbridge.org', 'SkillBridge Contact Form');
 
             $mail2->addAddress($email_from);     // LiveHelpNow Email-to-Ticket email address
 
@@ -153,17 +161,17 @@ if (validate_recaptcha($recaptcha_response) == true)
             
             $mail2->SmtpClose();
         }
+        header("HTTP/1.1 200 OK");
+        return true;
     } 
     catch (Exception $e) 
     {
-        //echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+        header("HTTP/1.1 500 Server Error");
     }
 }
 else {
     header("HTTP/1.1 400 Bad Request");
 }
 
-
-require("validate-recaptcha.php");
 
 ?>

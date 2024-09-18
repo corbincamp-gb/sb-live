@@ -23,6 +23,10 @@
 
 /* Custom Styles */
 
+.display-important {
+    display: block !important;
+}
+
 html
 {
     width:100%;

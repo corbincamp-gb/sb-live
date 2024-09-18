@@ -513,13 +513,13 @@
                                    <div class="form-row">
                                      <div class="form-group col-md-6">
                                        <label for="form4-email">Work Email Address <span class="required-star">*</span></label>
-                                       <input type="email" class="form-control email" id="form4-email" name="form4-email"  />
+                                       <input type="email" class="form-control" id="form4-email" name="form4-email" placeholder="Enter Email Address" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" required="">
                                        <div class="invalid-feedback">Please enter a valid work email address.</div>
                                        <div class="valid-feedback">OK</div>
                                      </div>
                                      <div class="form-group col-md-6">
                                        <label for="form4-email-verify">Verify Work Email Address <span class="required-star">*</span></label>
-                                       <input type="email" class="form-control email-verify" id="form4-email-verify" name="form4-email-verify"  />
+                                       <input type="email" class="form-control  email-verify" id="form4-email-verify" name="form4-email-verify" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" placeholder="Verify Work Email Address" required="">
                                        <div class="invalid-feedback">Emails don't match.</div>
                                        <div class="valid-feedback">OK</div>
                                      </div>
@@ -612,7 +612,6 @@
    <script src="scripts/jquery-3.5.1.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-   <script src="https://kit.fontawesome.com/27cc4b6ee0.js" crossorigin="anonymous"></script>
    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
    <script type="text/javascript" src="https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js"></script>
    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
@@ -620,32 +619,13 @@
    <script src="scripts/common.js"></script>
    <script src="scripts/inner.js"></script>
    <script src="scripts/contacts.js"></script>
-   <!-- Temporary removal of recaptcha -->
-   <!--<script src="https://www.google.com/recaptcha/api.js?render=6LdazjYqAAAAAD0kvGS2fbuaiNgSQfJcEJ_FVMy8"></script>-->
    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback" async defer></script>
    <script type="text/javascript">
 
+       document.querySelectorAll('.g-recaptcha').forEach((rc) => rc.setAttribute("data-sitekey", "6LcwpDcqAAAAAOyHd5gpliJdKn5ZgI3vNkmHr6hx"))
+
     // 508 fix for g-recaptcha-response generated textareas
     function onloadCallback() {
-    //  recaptcha1 = grecaptcha.render('recaptcha-1', {
-    //      'sitekey' : '',
-    //      'theme' : 'light'
-    //    });
-	//
-    //recaptcha2 = grecaptcha.render('recaptcha-2', {
-    //  'sitekey' : '',
-    //  'theme' : 'light'
-    //});
-	//
-    //recaptcha3 = grecaptcha.render('recaptcha-3', {
-    //  'sitekey' : '',
-    //  'theme' : 'light'
-    //});
-
-    //recaptcha4 = grecaptcha.render('recaptcha-4', {
-    //  'sitekey' : '',
-    //  'theme' : 'light'
-    //});
 
         // Add a label tag for each text area created for the recaptcha responses
         $(".g-recaptcha-response").each(function() {
@@ -667,21 +647,6 @@
         });
     }
 
-    var checkCaptch = false;
-     var verifyCallback = function(response) {
-        if (response == "") {
-             checkCaptch = false;
-         }
-         else {
-             checkCaptch = true;
-         }
-     };
-     $(document).ready(function() {
-         $(".btn-primary").click(function() {
-             if (checkCaptch && grecaptcha.getResponse()!="") {
-                  alert('recaptcha success!')
-             }
-         });
-     })
+   
     </script>
 </html>

@@ -6,6 +6,9 @@ var qpRedirect
 var redirectDelay = 5000
 var currentDelay = 0
 
+//const emailRegex = new RegExp('^[\\w.%+-]+@[\\w.-]+\\.[a-zA-Z]{2,}$', '');
+const valid = "isValid";
+const invalid = "isInvalid";
 const els = {
     dropDownMenuButtons: document.querySelectorAll('button.dropdown-menu'),
     emails: document.querySelectorAll('input[type="email"]'),
@@ -29,188 +32,42 @@ $(document).ready(function () {
     });
 
     $('#form2-specific-training').click(function () {
-        var isChecked = $(this).prop('checked')
-
-        if (isChecked) {
-            $('#form2-personnel-description').removeAttr('disabled')
-        } else {
-            $('#form2-personnel-description').removeAttr('disabled')
+        $('#form2-personnel-description').removeAttr('disabled')
+        if (!$(this).prop('checked')) {
             $('#form2-personnel-description').attr('disabled', '')
         }
     })
 
-    els.recaptchas.forEach((rc) => rc.setAttribute("data-key", "6LcwpDcqAAAAAOyHd5gpliJdKn5ZgI3vNkmHr6hx"))
-
     els.emails.forEach((eml) => {
-        eml.setAttribute('pattern', "[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$");
+        //eml.pattern = emailRegex;
         eml.setAttribute('placeholder', (eml.classList.contains("email-verify") ? "Verify " : "") + "Work Address");
         eml.required = true;
     });
 
-    els.emailVerifys.forEach((emlv) => {
-        emlv.classList.remove('isValid', 'isInvalid');
-    })
-
-    
-    $('#form1-email-verify').blur(function () {
-        $('#form1-email-verify').removeClass('isValid')
-        $('#form1-email-verify').removeClass('isInvalid')
-
-        var email = $('#form1-email').val()
-        var emailVerify = $('#form1-email-verify').val()
-
-        if (email !== emailVerify) {
-            $('#form1-email-verify').removeClass('isValid')
-            $('#form1-email-verify').addClass('isInvalid')
-        } else {
-            $('#form1-email-verify').addClass('isValid')
-            $('#form1-email-verify').removeClass('isInvalid')
-        }
-    })
-
-    $('#form1-email-verify').keyup(function () {
-        $('#form1-email-verify').removeClass('isValid')
-        $('#form1-email-verify').removeClass('isInvalid')
-
-        var email = $('#form1-email').val()
-        var emailVerify = $('#form1-email-verify').val()
-
-        if (email !== emailVerify) {
-            $('#form1-email-verify').removeClass('isValid')
-            $('#form1-email-verify').addClass('isInvalid')
-        } else {
-            $('#form1-email-verify').addClass('isValid')
-            $('#form1-email-verify').removeClass('isInvalid')
-        }
-    })
-
-    $('#form2-email-verify').blur(function () {
-        $('#form2-email-verify').removeClass('isValid')
-        $('#form2-email-verify').removeClass('isInvalid')
-
-        var email = $('#form2-email').val()
-        var emailVerify = $('#form2-email-verify').val()
-
-        if (email !== emailVerify) {
-            $('#form2-email-verify').removeClass('isValid')
-            $('#form2-email-verify').addClass('isInvalid')
-        } else {
-            $('#form2-email-verify').addClass('isValid')
-            $('#form2-email-verify').removeClass('isInvalid')
-        }
-    })
-
-    $('#form2-email-verify').keyup(function () {
-        $('#form2-email-verify').removeClass('isValid')
-        $('#form2-email-verify').removeClass('isInvalid')
-
-        var email = $('#form2-email').val()
-        var emailVerify = $('#form2-email-verify').val()
-
-        if (email !== emailVerify) {
-            $('#form2-email-verify').removeClass('isValid')
-            $('#form2-email-verify').addClass('isInvalid')
-        } else {
-            $('#form2-email-verify').addClass('isValid')
-            $('#form2-email-verify').removeClass('isInvalid')
-        }
-    })
-
-    $('#form3-email-verify').blur(function () {
-        $('#form3-email-verify').removeClass('isValid')
-        $('#form3-email-verify').removeClass('isInvalid')
-
-        var email = $('#form3-email').val()
-        var emailVerify = $('#form3-email-verify').val()
-
-        if (email !== emailVerify) {
-            $('#form3-email-verify').removeClass('isValid')
-            $('#form3-email-verify').addClass('isInvalid')
-        } else {
-            $('#form3-email-verify').addClass('isValid')
-            $('#form3-email-verify').removeClass('isInvalid')
-        }
-    })
-
-    $('#form3-email-verify').keyup(function () {
-        $('#form3-email-verify').removeClass('isValid')
-        $('#form3-email-verify').removeClass('isInvalid')
-
-        var email = $('#form3-email').val()
-        var emailVerify = $('#form3-email-verify').val()
-
-        if (email !== emailVerify) {
-            $('#form3-email-verify').removeClass('isValid')
-            $('#form3-email-verify').addClass('isInvalid')
-        } else {
-            $('#form3-email-verify').addClass('isValid')
-            $('#form3-email-verify').removeClass('isInvalid')
-        }
-    })
-
-    $('#form4-email-verify').blur(function () {
-        $('#form4-email-verify').removeClass('isValid')
-        $('#form4-email-verify').removeClass('isInvalid')
-
-        var email = $('#form4-email').val()
-        var emailVerify = $('#form4-email-verify').val()
-
-        if (email !== emailVerify) {
-            $('#form4-email-verify').removeClass('isValid')
-            $('#form4-email-verify').addClass('isInvalid')
-        } else {
-            $('#form4-email-verify').addClass('isValid')
-            $('#form4-email-verify').removeClass('isInvalid')
-        }
-    })
-
-    $('#form4-email-verify').keyup(function () {
-        $('#form4-email-verify').removeClass('isValid')
-        $('#form4-email-verify').removeClass('isInvalid')
-
-        var email = $('#form4-email').val()
-        var emailVerify = $('#form4-email-verify').val()
-
-        if (email !== emailVerify) {
-            $('#form4-email-verify').removeClass('isValid')
-            $('#form4-email-verify').addClass('isInvalid')
-        } else {
-            $('#form4-email-verify').addClass('isValid')
-            $('#form4-email-verify').removeClass('isInvalid')
-        }
-    })
-
-    $('#form5-email-verify').blur(function () {
-        $('#form5-email-verify').removeClass('isValid')
-        $('#form5-email-verify').removeClass('isInvalid')
-
-        var email = $('#form5-email').val()
-        var emailVerify = $('#form5-email-verify').val()
-
-        if (email !== emailVerify) {
-            $('#form5-email-verify').removeClass('isValid')
-            $('#form5-email-verify').addClass('isInvalid')
-        } else {
-            $('#form5-email-verify').addClass('isValid')
-            $('#form5-email-verify').removeClass('isInvalid')
-        }
-    })
-
-    $('#form5-email-verify').keyup(function () {
-        $('#form5-email-verify').removeClass('isValid')
-        $('#form5-email-verify').removeClass('isInvalid')
-
-        var email = $('#form5-email').val()
-        var emailVerify = $('#form5-email-verify').val()
-
-        if (email !== emailVerify) {
-            $('#form5-email-verify').removeClass('isValid')
-            $('#form5-email-verify').addClass('isInvalid')
-        } else {
-            $('#form5-email-verify').addClass('isValid')
-            $('#form5-email-verify').removeClass('isInvalid')
-        }
-    })
+    ['blur'].forEach(evt =>
+        els.emailVerifys.forEach((emlv) =>
+            emlv.addEventListener(evt, function () {
+                emlv.classList.remove(valid, invalid);
+                var emlname = emlv.getAttribute("name").replace("-verify", "");
+                var eml = document.querySelector("input[name=" + emlname + "]");
+                if (eml.value !== emlv.value) {
+                    console.log(evt + ' says the emails dont match');
+                    emlv.classList.remove(valid);
+                    emlv.classList.add(invalid);
+                    Array.from(emlv.closest('div').children).forEach(d => {
+                        if (d.classList.contains('invalid-feedback')) {
+                            d.classList.add("display-important");
+                        }
+                    });
+                } else {
+                    emlv.classList.add(valid);
+                    emlv.classList.remove(invalid);
+                    var di = document.querySelector('.display-important');
+                    if (di) { di.classList.remove('display-important'); }
+                }
+            })
+        )
+    );
 
     $('#form4-contact-type').change(function (e) {
         var contactType = $('#form4-contact-type').val()
@@ -235,21 +92,19 @@ $(document).ready(function () {
         }
     })
 
-    
-
     els.resets.forEach(btn => {
         btn.addEventListener('click', (evt) => {
-            els.successBanners.forEach(spn => spn.style.dislay = 'none');
-            els.submitBtns.forEach(subm => {
-                subm.style.dislay = 'block';
-                subm.disabled = true;
+            els.successBanners.forEach(spn => spn.style.display = 'none');
+            els.submits.forEach(subm => {
+                subm.style.display = 'inline-block';
+                subm.disabled = false;
             });
             var validated = document.querySelectorAll('.was-validated');
-            validated.forEach(wv => wv.removeClass('was-validated'));
+            validated.forEach(wv => wv.classList.remove('was-validated'));
             els.recaptchas.forEach(rc => grecaptcha.reset(rc));
         })
     })
-       
+
     // Attach event listeners to each phone input field
     els.phoneNumbers.forEach((phone) => {
         phone.addEventListener('input', formatPhoneNumber);
@@ -315,10 +170,13 @@ $(document).ready(function () {
                                     } else {
                                         SanitizeAllInput();
                                         $.ajax({
+                                            statusCode: {
+                                                400: ProveHuman,
+                                                500: ServerError
+                                            },
                                             url: 'scripts/contact-service-member.php',
                                             type: 'POST',
                                             data: $(form).serialize(),
-                                            error: ProveHuman,
                                             success: function (msg) {
                                                 //alert("form submitted successfully!");
                                                 if ($('#form1-branch').val() == 'Army') {
@@ -343,17 +201,19 @@ $(document).ready(function () {
                                     var emailVerify = $('#form2-email-verify').val()
 
                                     if (email !== emailVerify) {
-                                        $('#form2-email-verify').removeClass('isValid')
-                                        $('#form2-email-verify').addClass('isInvalid')
+                                        $('#form2-email-verify').removeClass('isValid').addClass('isInvalid')
                                     } else {
                                         SanitizeAllInput();
                                         //alert("trying to send industry form");
                                         $.ajax({
+                                            statusCode: {
+                                                400: ProveHuman,
+                                                500: ServerError
+                                            },
                                             url: 'scripts/contact-industry-employer.php',
                                             type: 'POST',
                                             //data: $(form).serialize(),
                                             data: { encodedData: btoa($(form).serialize()) },
-                                            error: ProveHuman,
                                             success: function (msg) {
                                                 //alert("form submitted successfully!");
                                                 $('#form2-msg').css('display', 'block')
@@ -374,15 +234,17 @@ $(document).ready(function () {
                                     var emailVerify = $('#form3-email-verify').val()
 
                                     if (email !== emailVerify) {
-                                        $('#form3-email-verify').removeClass('isValid')
-                                        $('#form3-email-verify').addClass('isInvalid')
+                                        $('#form3-email-verify').removeClass('isValid').addClass('isInvalid')
                                     } else {
                                         SanitizeAllInput();
                                         $.ajax({
+                                            statusCode: {
+                                                400: ProveHuman,
+                                                500: ServerError
+                                            },
                                             url: 'scripts/contact-commander.php',
                                             type: 'POST',
                                             data: $(form).serialize(),
-                                            error: ProveHuman,
                                             success: function (msg) {
                                                 //alert("form submitted successfully!");
                                                 if ($('#form3-branch').val() == 'Army') {
@@ -409,17 +271,19 @@ $(document).ready(function () {
 
                                     if (email !== emailVerify) {
                                         //console.log("form not valid because of email");
-                                        $('#form4-email-verify').removeClass('isValid')
-                                        $('#form4-email-verify').addClass('isInvalid')
+                                        $('#form4-email-verify').removeClass('isValid').addClass('isInvalid')
                                     } else {
                                         var contactType = $('#form4-contact-type').val()
                                         var contactPurpose = $('#form4-contact-purpose').val()
                                         SanitizeAllInput();
                                         $.ajax({
+                                            statusCode: {
+                                                400: ProveHuman,
+                                                500: ServerError
+                                            },
                                             url: 'scripts/contact-general.php',
                                             type: 'POST',
                                             data: $(form).serialize(),
-                                            error: ProveHuman,
                                             success: function (msg) {
                                                 //alert("form submitted successfully!");
                                                 $('#form4-msg').css('display', 'block')
@@ -450,6 +314,10 @@ $(document).ready(function () {
 
 function ProveHuman() {
     alert("Please prove you are human");
+}
+
+function ServerError() {
+    alert("An error occured!");
 }
 
 function SanitizeAllInput() {
@@ -497,28 +365,6 @@ function recaptchaCallback5() {
     $('#contact-form-submit-5').removeAttr('disabled')
 }
 
-function ResetForms() {
-    $("#form1-msg").css("display", "none");
-    $("#form2-msg").css("display", "none");
-    $("#form3-msg").css("display", "none");
-    $("#form4-msg").css("display", "none");
-
-    $("#contact-form-submit-1").css("display", "block").attr("disabled", true);
-    $("#contact-form-submit-2").css("display", "block").attr("disabled", true);
-    $("#contact-form-submit-3").css("display", "block").attr("disabled", true);
-    $("#contact-form-submit-4").css("display", "block").attr("disabled", true);
-
-    $("#service-member-form").removeClass("was-validated");
-    $("#industry-employer-form").removeClass("was-validated");
-    $("#commander-form").removeClass("was-validated");
-    $("#general-form").removeClass("was-validated");
-
-    grecaptcha.reset(recaptcha1);
-    grecaptcha.reset(recaptcha2);
-    grecaptcha.reset(recaptcha3);
-    grecaptcha.reset(recaptcha4);
-}
-
 // Show a Form
 function ShowForm(num) {
     $('#contact-form-container').css('display', 'block')
@@ -551,15 +397,3 @@ function formatPhoneNumber(event) {
         inputField.value = `${phoneNumber.slice(0, 3)}-${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`;
     }
 }
-
-/*function isEmail(email) {
-  //var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
-  //var regex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,5}$/;
-  var regex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,5}$/;
-
-  if (!regex.test(email)) {
-    return false
-  } else {
-    return true
-  }
-}*/
