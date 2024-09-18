@@ -109,6 +109,8 @@ $email_message_final .= "<p><span style='font-weight:bold;'>Phone Number:</span>
 
 $email_message_final .= "<p><span style='font-weight:bold;'>Email Address:</span> ".clean_string($email_from)."</p></body></html>";
 
+// Validate the recaptcha challenge response
+require('validate-recaptcha.php');
 
 // Validate recaptcha and then create a submission email/ticket
 if (validate_recaptcha($recaptcha_response) == true) 
@@ -179,17 +181,17 @@ if (validate_recaptcha($recaptcha_response) == true)
         $mail->Body    = $email_message_final;
 		$mail->addCC($email_from);
         $mail->send();
+        header("HTTP/1.1 200 OK");
+        // Close the connection
+        $mail->SmtpClose();
+        header("HTTP/1.1 200 OK");
+        return true;
     } 
     catch (Exception $e) 
     {
-        //echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+        header("HTTP/1.1 500 Server Error");
     }
-    
-    // Close the connection
-    $mail->SmtpClose();
-}
+} else {
+    header("HTTP/1.1 400 Bad Request");
+} 
 
-// Validate the recaptcha challenge response
-require('validate-recaptcha.php');
-
-?>
